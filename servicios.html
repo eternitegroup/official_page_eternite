@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>ÉTERNITÉ GROUP</title>
+    <link rel="stylesheet" href="style_servicios.css">
+    <link rel="stylesheet" href="general.css">
+    <link rel="shortcut icon" href="./logo/FAV_D.png" type="image/x-icon">
+</head>
+
+<body>
+  <!-- HEADER / MENU -->
+<header>
+    <div class="menu">
+        <div class="menu-logo">
+            <a href="index.html"><img src="./logo/FAV_D.png" alt="Logo"></a>
+        </div>
+        <nav class="menu-nav">
+            <button onclick="irA('index.html')">Inicio</button>
+            <button onclick="irA('relojes.html')">Relojes</button>
+            <button onclick="irA('servicios.html')">Servicios</button>
+            <button onclick="irA('contacto.html')">Contacto</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+       <section class="servicios-section">
+
+        <!-- BOTONES DE SERVICIOS -->
+        <div class="servicios-botones">
+            <button class="servicio-btn active" onclick="mostrarServicio('reparacion')">Reparación</button>
+            <button class="servicio-btn" onclick="mostrarServicio('venta')">Venta</button>
+            <button class="servicio-btn" onclick="mostrarServicio('personalizacion')">Personalización</button>
+        </div>
+
+        <!-- CONTENEDOR DE SERVICIOS -->
+        <div class="servicio-card">
+
+            <!-- REPARACIÓN -->
+            <div class="servicio-contenido activo" id="reparacion">
+                <div class="servicio-texto">
+                    <h1>Reparación</h1>
+                    <p>
+                        En ÉTERNITÉ GROUP entendemos que un reloj es mucho más que un instrumento
+                        para medir el tiempo: es una pieza de precisión, historia y valor.
+                        Nuestro servicio de reparación está diseñado para preservar la esencia
+                        original de cada reloj, garantizando su correcto funcionamiento y
+                        prolongando su vida útil.
+                    </p>
+                    <p>
+                        Realizamos diagnósticos completos, ajustes mecánicos, sustitución de
+                        componentes originales, limpieza interna y restauraciones estéticas
+                        con herramientas de alta precisión y técnicas especializadas.
+                    </p>
+                    <p>
+                        Cada reloj es tratado individualmente por profesionales cualificados,
+                        asegurando resultados fiables, discretos y acordes a los estándares
+                        de la alta relojería.
+                    </p>
+                </div>
+                <div class="servicio-imagen">
+                    <img src="./fotos de servicios/reparacion/reparacion.jpeg" alt="Reparación de relojes">
+                </div>
+            </div>
+
+            <!-- VENTA -->
+            <div class="servicio-contenido" id="venta">
+                <div class="servicio-texto">
+                    <h1>Venta</h1>
+                    <p>
+                        Ofrecemos una cuidada selección de relojes de lujo, tanto nuevos como
+                        certificados, procedentes de marcas reconocidas por su excelencia y
+                        prestigio internacional.
+                    </p>
+                    <p>
+                        Cada pieza pasa por un riguroso proceso de verificación para garantizar
+                        su autenticidad, estado y funcionamiento. Nuestro objetivo es ofrecer
+                        relojes que representen elegancia, fiabilidad y distinción.
+                    </p>
+                    <p>
+                        Ya sea para inversión, colección o uso personal, le asesoramos de forma
+                        personalizada para que encuentre el reloj que mejor se adapte a su estilo
+                        y expectativas.
+                    </p>
+                </div>
+                <div class="servicio-imagen">
+                    <img src="./fotos de servicios/venta/venta_baner.jpg" alt="Venta de relojes">
+                </div>
+            </div>
+
+            <!-- PERSONALIZACIÓN -->
+            <div class="servicio-contenido" id="personalizacion">
+                <div class="servicio-texto">
+                    <h1>Personalización</h1>
+                    <p>
+                        Convertimos su reloj en una pieza única. Nuestro servicio de personalización
+                        permite adaptar cada detalle para reflejar su identidad, estilo o una ocasión
+                        especial.
+                    </p>
+                    <p>
+                        Ofrecemos grabados exclusivos, modificaciones estéticas y acabados
+                        personalizados, siempre respetando la estructura y calidad original
+                        del reloj.
+                    </p>
+                    <p>
+                        Cada personalización se realiza bajo los más altos estándares, asegurando
+                        un resultado elegante, discreto y duradero, pensado para quienes buscan
+                        exclusividad sin compromisos.
+                    </p>
+                </div>
+                <div class="servicio-imagen">
+                    <img src="./fotos de servicios/personalizacion/rep.jpeg" alt="Personalización de relojes">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO VIA INSTAGRAM -->
+<section class="instagram-section">
+    <div class="instagram-card">
+        <div class="instagram-imagen">
+            <img src="iconos\redes_sociales\1.png" alt="Contacto via Instagram">
+        </div>
+        <div class="instagram-texto">
+            <h2>Atención y Tramitación vía Instagram</h2>
+            <p>
+                Todas nuestras <strong>ventas</strong>, <strong>reparaciones</strong> y
+                <strong>personalizaciones</strong> serán tramitadas exclusivamente
+                a través de mensaje directo en nuestra cuenta de Instagram.
+            </p>
+            <p>
+                Esto nos permite ofrecerle un servicio personalizado, rápido y seguro,
+                asegurando que cada solicitud sea atendida por nuestro equipo especializado
+                con la máxima discreción y profesionalidad.
+            </p>
+            <p>
+                Contáctenos ahora mismo en 
+                <a href="https://www.instagram.com/eternitegroup/" target="_blank" rel="noopener noreferrer">
+                    @eternitegroup
+                </a> 
+                para iniciar su trámite o consultar cualquier detalle sobre nuestros servicios.
+            </p>
+        </div>
+    </div>
+</section>
+
+     <!-- DEDICA TU RELOJ -->
+    <section class="dedica-section">
+        <div class="dedica-card">
+
+            <div class="dedica-texto">
+                <h2>Dedica tu reloj</h2>
+                <p>
+                    En ÉTERNITÉ GROUP creemos que los detalles marcan la diferencia.
+                    Por ello, los relojes adquiridos a través de nuestros servicios
+                    de <strong>venta</strong> y <strong>personalización</strong> pueden incluir
+                    una dedicatoria especial.
+                </p>
+                <p>
+                    Añadimos una tarjeta personalizada dentro del packaging, ideal para
+                    celebraciones, regalos exclusivos o momentos únicos. En ella podemos
+                    incluir nombres, fechas, mensajes personales o dedicatorias elegantes,
+                    cuidadosamente presentadas.
+                </p>
+                <p>
+                    Un detalle sutil pero significativo que transforma cada reloj en un
+                    recuerdo atemporal, listo para ser entregado con distinción y estilo.
+                </p>
+            </div>
+
+            <div class="dedica-imagen">
+                <img src="./fotos de servicios/packagin.jpeg" alt="Dedicatoria en packaging de reloj">
+            </div>
+
+        </div>
+    </section>
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <p>© 2025 ÉTERNITÉ GROUP</p>
+            <p><a href="mailto:contacteternitegroup@gmail.com" target="_blank" rel="noopener noreferrer">contacteternitegroup@gmail.com</a></p>
+        </div>
+
+        <div class="footer-frase">
+            <p>“Own Your Time”</p>
+        </div>
+
+        <div class="footer-redes">
+            <a href="https://www.instagram.com/eternitegroup/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.tiktok.com/@eternitegroup" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://x.com/ContactEternite" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a href="https://www.youtube.com/@EternitEGroup" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

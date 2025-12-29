@@ -1,0 +1,266 @@
+/* =========================== */
+/* RESET GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Bahnschrift";
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: black;
+}
+
+/* =========================== */
+/* HEADER Y MENÚ */
+header {
+    background-color: #000000;
+    padding: 15px 40px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Para que los elementos bajen en pantallas pequeñas */
+}
+
+.menu-logo a {
+    display: inline-block;
+    z-index: 10;
+}
+
+/* LOGO MENU */
+.menu-logo img {
+    width: 70px;
+    cursor: pointer;
+}
+
+.menu-nav {
+    display: flex;
+    flex-wrap: wrap; /* permite que los botones bajen en móviles */
+    gap: 10px;
+}
+
+.menu-nav button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+}
+
+.menu-nav button:hover {
+    text-decoration: underline;
+    color: #aca7a7;
+}
+
+/* =========================== */
+/* MAIN OCUPA EL ESPACIO DISPONIBLE */
+main {
+    flex: 1;
+}
+
+/* =========================== */
+/* SECCIONES */
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60px;
+    padding: 40px 20px;
+    margin: 60px 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* =========================== */
+/* FOOTER */
+.footer {
+    background-color: black;
+    color: #fff;
+    padding: 40px 20px;
+    font-size: 14px;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-info p,
+.footer-frase p {
+    margin: 4px 0;
+}
+
+.footer-info a {
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+    color: #fff;
+}
+
+.footer-frase p {
+    font-size: 18px;
+    font-style: italic;
+    color: #fff;
+}
+
+.footer-redes {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-redes a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-redes a:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* =========================== */
+/* ANIMACIONES */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* ELEMENTOS OCULTOS AL INICIO */
+.animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.8s forwards;
+}
+
+/* =========================== */
+/* RESPONSIVE */
+
+/* Tablets y desktops */
+@media (min-width: 768px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .footer-frase {
+        order: 0;
+        text-align: center;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 767px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    /* Menú centrado y letras más grandes */
+    .menu-nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .menu-nav button {
+        margin-left: 0;
+        font-size: 22px; /* aumento de tamaño para mejor visibilidad */
+    }
+
+    section {
+        padding: 30px 15px;
+        margin: 40px 0;
+    }
+
+    h2 {
+        font-size: 24px; /* ligeramente más grande para móviles */
+    }
+
+    .footer {
+        padding: 30px 15px;
+        font-size: 18px; /* aumento de tamaño en footer */
+    }
+
+    .footer-frase p {
+        font-size: 20px; /* más legible */
+    }
+
+    .footer-redes {
+        justify-content: center;
+        gap: 22px;
+    }
+
+    /* 👉 AÑADIDO: centrar footer-info en móvil */
+    .footer-info {
+        text-align: center;
+    }
+
+    .footer-info a {
+        display: inline-block;
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .menu-logo img {
+        width: 50px;
+    }
+
+    /* Letras más grandes para pantallas muy pequeñas */
+    .menu-nav button {
+        font-size: 20px;
+    }
+
+    section {
+        padding: 20px 10px;
+        margin: 30px 0;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .footer-frase p {
+        font-size: 18px;
+    }
+
+    .footer-redes {
+        gap: 18px;
+    }
+}
