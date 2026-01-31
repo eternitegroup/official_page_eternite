@@ -1,0 +1,371 @@
+/* ===================== */
+/* ESTILOS GENERALES */
+/* ===================== */
+html {
+    font-size: 16px; /* base */
+}
+
+main {
+    background-color: #2A140B;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ccc;
+}
+
+/* ===================== */
+/* HERO */
+.empresa-hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url("./fondo/fondo_humo3.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0 1rem;
+    position: relative;
+    margin-top: 0;
+}
+
+/* Overlay oscuro para mejorar contraste */
+.empresa-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* Mantener texto por encima del overlay */
+.empresa-hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+.empresa-hero-text h1 {
+    color: #fff;
+    font-size: clamp(2rem, 6vw, 4rem);
+    letter-spacing: clamp(2px, 1vw, 4px);
+}
+
+.slogan {
+    color: #ffffff;
+    margin-top: 10px;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+}
+
+
+/* ===================== */
+/* SECCIONES */
+.empresa-section {
+    padding: clamp(40px, 5vw, 80px) 10%;
+}
+
+.empresa-section h2 {
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.intro-text, .empresa-section p {
+    color: #fff;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(1rem, 2vw, 1.04rem);
+
+}
+
+/* ===================== */
+/* LOGO */
+.empresa-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 60px);
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.empresa-logo-img img {
+    max-width: clamp(150px, 20vw, 300px);
+    height: auto;
+    filter: drop-shadow(0 15px 30px rgba(255,255,255,0.2));
+}
+
+.empresa-logo-text {
+    flex: 1 1 300px;
+}
+
+.empresa-logo-text p {
+    color: #fff;
+    line-height: 1.8;
+    text-align: justify;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* ===================== */
+/* VALORES */
+.valores-empresa {
+    padding: clamp(50px, 5vw, 90px) 20px;
+    text-align: center;
+}
+
+.valores-empresa h2 {
+    color: #ffffff;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+}
+
+.valores {
+    display: flex;
+    justify-content: center;
+    gap: clamp(15px, 3vw, 40px);
+    flex-wrap: wrap;
+}
+
+.valor {
+    flex: 1 1 240px;
+    max-width: 240px;
+    padding: clamp(20px, 3vw, 35px);
+    background-color: #ffffff;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+.valor:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 55px rgba(255,255,255,0.15);
+}
+
+.esfera {
+    width: clamp(80px, 10vw, 115px);
+    height: clamp(80px, 10vw, 115px);
+    border-radius: 50%;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.esfera img {
+    width: clamp(30px, 5vw, 48px);
+    height: clamp(30px, 5vw, 48px);
+}
+
+.valor h3 {
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.texto-valor p {
+    font-size: clamp(12px, 1.5vw, 14px);
+    line-height: 1.7;
+    color: #000000;
+    text-align: justify;
+    text-align-last: left;
+    word-spacing: normal;
+    hyphens: auto;
+    overflow-wrap: break-word;
+}
+
+/* ===================== */
+/* RELOJES */
+.relojes {
+    text-align: center;
+    padding: clamp(30px, 5vw, 50px) 20px;
+}
+
+.relojes h2 {
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 30px;
+}
+
+.tarjetas-relojes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tarjeta {
+    width: 250px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+.tarjeta .fondo {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover; /* ensures the image covers the entire area without distortion */
+    transition: transform 0.3s;
+}
+
+.tarjeta:hover .fondo {
+    transform: scale(1.05);
+}
+
+.tarjeta:hover {
+    box-shadow: 0 10px 20px rgba(255,255,255,0.3);
+}
+
+.nombre {
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    background-color: #000;
+    color: #fff;
+}
+
+/* BOTÓN VER MÁS RELOJES */
+.btn_vermas-relojes {
+    padding: 12px 30px;
+    font-size: clamp(14px, 2vw, 16px);
+    border: none;
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn_vermas-relojes:hover {
+    background-color: #333;
+}
+
+/* ===================== */
+/* SERVICIOS */
+.servicios {
+    display: flex;
+    justify-content: flex-start; /* fila desde el inicio */
+    gap: clamp(15px, 3vw, 40px);
+    flex-wrap: nowrap; /* no se van a columna */
+    margin-top: 20px;
+    overflow-x: auto; /* permite scroll horizontal en pantallas pequeñas */
+    padding-bottom: 10px; /* espacio inferior para scroll */
+    -webkit-overflow-scrolling: touch; /* suaviza scroll en iOS */
+}
+
+.servicio {
+    flex: 0 0 auto; /* tamaño fijo relativo a cada tarjeta */
+    width: clamp(180px, 25vw, 260px); /* escalable */
+    background-color: #ffffff;
+    padding: clamp(15px, 3vw, 20px);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(255,255,255,0.05);
+}
+
+.servicio img {
+    width: 100%;
+    height: clamp(120px, 20vw, 160px);
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.servicio h3 {
+    color: #000000;
+    font-size: clamp(16px, 1.5vw, 18px);
+}
+
+.servicio p {
+    color: #000000;
+    font-size: clamp(12px, 1.5vw, 14px);
+    margin-bottom: 15px;
+    text-align: justify;
+    text-align-last: left;
+    word-spacing: normal;
+    hyphens: auto;
+    overflow-wrap: break-word;
+}
+
+/* BOTONES SERVICIOS */
+.btn {
+    background-color: #000000;
+    color: #fff;
+    border-radius: 20px;
+    padding: clamp(8px, 1.5vw, 10px) clamp(15px, 3vw, 20px);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #333;
+}
+
+
+
+/* ===================== */
+/* ANIMACIÓN */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================== */
+/* RESPONSIVE SERVICIOS */
+/* ===================== */
+@media (max-width: 768px) {
+    .servicios {
+        flex-direction: column; /* apila verticalmente */
+        align-items: center;    /* centra los servicios */
+        overflow-x: visible;    /* elimina scroll horizontal */
+        gap: 20px;              /* espacio entre tarjetas verticales */
+    }
+
+    .servicio {
+        width: 90%;             /* ocupa la mayor parte del contenedor */
+        max-width: 400px;       /* limita el tamaño máximo */
+    }
+}
+/* ===================== */
+/* RESPONSIVE RELOJES */
+/* ===================== */
+@media (max-width: 768px) {
+    .tarjetas-relojes {
+        justify-content: center; /* Center the cards on small screens */
+    }
+
+    .tarjeta {
+        width: 90%; /* Make cards take up more space on small screens */
+        max-width: 300px; /* Limit maximum width */
+    }
+
+    .tarjeta .fondo {
+        height: 300px; /* Adjust the image height on smaller screens */
+    }
+}

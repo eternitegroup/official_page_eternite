@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉTERNITÉ GROUP</title>
+
+    <!-- CSS GENERALES -->
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="plantilla_reloj_date.css">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="./logo/FAV_D.png" type="image/x-icon">
+</head>
+
+<body>
+
+<!-- HEADER / MENU -->
+<header>
+    <div class="menu">
+        <div class="menu-logo">
+            <a href="index.html"><img src="./logo/FAV_D.png" alt="Logo"></a>
+        </div>
+        <nav class="menu-nav">
+            <button onclick="irA('index.html')">Inicio</button>
+            <button onclick="irA('relojes.html')">Relojes</button>
+            <button onclick="irA('servicios.html')">Servicios</button>
+            <button onclick="irA('contacto.html')">Contacto</button>
+        </nav>
+    </div>
+</header>
+
+<a href="relojes.html" class="back-arrow">
+    &#8592;
+</a>
+
+<!-- MAIN -->
+<main id="relojes">
+    <!-- SECCIÓN RELOJ -->
+    <section class="reloj-section">
+
+        <div class="container">
+
+            <!-- IZQUIERDA: IMAGEN -->
+            <div class="image-box">
+                <div class="zoom-container" id="zoomContainer">
+                    <img id="watchImage" src="./relojes/pantilla de relojes/da/datejust/1.png" alt="Reloj">
+                </div>
+            </div>
+
+            <!-- DERECHA: INFO -->
+            <div class="info-box">
+                <!-- SELECTOR DATEJUST / DAYDATE -->
+                <div class="watch-toggle">
+                    <button class="active" onclick="setCollection('datejust')">Datejust</button>
+                    <button onclick="setCollection('daydate')">Daydate</button>
+                </div>
+
+                <h1>Datejust</h1>
+
+                <h2 class="watch-name" id="watchName">Blue</h2>
+
+                <div class="price">139,99€</div>
+
+                <p class="description">
+                    Un icono de la elegancia clásica. Su función de fecha y diseño atemporal hacen de este reloj un accesorio imprescindible para cualquier ocasión formal o casual.
+                </p>
+<div class="colors">
+    <!-- Blue -->
+    <span class="color blue"
+        onclick="changeWatch(currentCollection === 'datejust' ? 'dj_1' : 'dd_1')"></span>
+
+    <!-- Ice Blue -->
+    <span class="color ice-blue"
+        onclick="changeWatch(currentCollection === 'datejust' ? 'dj_2' : 'dd_4')"></span>
+
+    <!-- Mint Green -->
+    <span class="color mint-green"
+        onclick="changeWatch(currentCollection === 'datejust' ? 'dj_4' : 'dd_2')"></span>
+
+    <!-- Black Classic -->
+    <span class="color black-classic"
+        onclick="changeWatch(currentCollection === 'datejust' ? 'dj_6' : 'dd_6')"></span>
+</div>
+
+
+
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <p>© 2025 ÉTERNITÉ GROUP</p>
+            <p><a href="mailto:contacteternitegroup@gmail.com" target="_blank" rel="noopener noreferrer">contacteternitegroup@gmail.com</a></p>
+        </div>
+
+        <div class="footer-frase">
+            <p>“Own Your Time”</p>
+        </div>
+
+        <div class="footer-redes">
+            <a href="https://www.instagram.com/eternitegroup/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+            <a href="https://www.tiktok.com/@eternitegroup" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TikTok</a>
+            <a href="https://x.com/ContactEternite" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+            <a href="https://www.youtube.com/@EternitEGroup" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
