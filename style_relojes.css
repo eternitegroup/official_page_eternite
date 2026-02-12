@@ -1,0 +1,107 @@
+/* =========================== */
+/* CATALOGO - MEJORADO Y RESPONSIVE */
+/* =========================== */
+
+/* Título centrado y elegante */
+.catalog-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    margin: clamp(2rem, 4vw, 3rem) 0 clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Grid moderno y flexible */
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(220px, 25%, 250px), 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    padding: 0 clamp(1rem, 3vw, 2rem) clamp(2rem, 4vw, 3rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Tarjeta de producto */
+.product {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Imagen de producto */
+.product img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    max-height: clamp(120px, 15vw, 180px);
+    padding: clamp(0.8rem, 2vw, 1rem);
+    transition: transform 0.4s;
+    background-color: #ffffff;
+}
+
+/* Nombre del producto */
+.product h2 {
+    text-align: center;
+    padding: clamp(0.8rem, 2vw, 1rem);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    transition: color 0.3s, transform 0.3s;
+}
+
+/* Hover suave y elegante */
+.product:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.product:hover img {
+    transform: scale(1.05);
+}
+
+.product:hover h2 {
+    color: #717171;
+    transform: scale(1.05);
+}
+
+/* =========================== */
+/* RESPONSIVE ADAPTATIVO */
+
+/* Móviles y tablets con scroll opcional si es necesario */
+@media (max-width: 768px) {
+    .catalog {
+        grid-template-columns: 1fr; /* una columna por fila */
+        gap: clamp(1rem, 3vw, 1.5rem);
+        padding: 0 clamp(1rem, 5vw, 1rem) clamp(2rem, 4vw, 2rem);
+    }
+
+    .product img {
+        max-height: clamp(100px, 20vw, 140px);
+    }
+
+    .product h2 {
+        font-size: clamp(0.95rem, 2.5vw, 1rem);
+        padding: clamp(0.6rem, 2vw, 0.8rem);
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .catalog-title {
+        font-size: clamp(1.6rem, 5vw, 1.8rem);
+        margin: clamp(1.5rem, 4vw, 2rem) 0 clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .product img {
+        max-height: clamp(80px, 25vw, 120px);
+        padding: clamp(0.5rem, 2vw, 0.8rem);
+    }
+
+    .product h2 {
+        font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+        padding: clamp(0.5rem, 2vw, 0.8rem);
+    }
+}

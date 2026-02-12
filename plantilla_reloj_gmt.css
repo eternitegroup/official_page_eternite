@@ -1,0 +1,192 @@
+/* ===== CONTENEDOR ===== */
+.container {
+    display: flex;
+    gap: clamp(20px, 4vw, 40px);
+    background: #ffffff;
+    padding: clamp(20px, 4vw, 40px);
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    animation: fadeIn 1s ease;
+    flex-wrap: wrap; /* permite que los elementos bajen en pantallas pequeñas */
+    justify-content: center;
+}
+
+/* ===== IMAGEN ===== */
+.image-box {
+    flex: 1 1 clamp(200px, 40%, 350px);
+}
+
+.zoom-container {
+    width: 100%;
+    height: clamp(200px, 30vw, 350px);
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid #e5e5e5;
+    cursor: zoom-in;
+    position: relative;
+}
+
+.zoom-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.1s ease;
+    transform-origin: center;
+    pointer-events: none;
+}
+
+/* ===== INFO ===== */
+.info-box {
+    flex: 1 1 clamp(200px, 40%, 350px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-box h1 {
+    font-size: clamp(20px, 2.5vw, 30px);
+    margin-bottom: 10px;
+}
+
+.watch-name {
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 600;
+    transition: color 0.4s ease;
+}
+
+.price {
+    font-size: clamp(16px, 2vw, 22px);
+    color: #333;
+    margin: 15px 0;
+}
+
+.description {
+    font-size: clamp(12px, 1.8vw, 14px);
+    line-height: 1.7;
+    color: #555;
+    text-align: justify;
+}
+
+/* ===== COLORES ===== */
+.colors {
+    display: flex;
+    gap: clamp(10px, 2vw, 15px);
+    margin-top: 20px;
+}
+
+.color {
+    width: clamp(20px, 3vw, 26px);
+    height: clamp(20px, 3vw, 26px);
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.color:hover {
+    transform: scale(1.3);
+}
+
+/* ===== COLORES TEMÁTICOS ===== */
+.batman { background: linear-gradient(45deg, #1d3d8f, #000000); }
+.brucewayne { background: #000000; }
+.joker { background: #6a1b9a; }
+.pepsi { background: linear-gradient(90deg, #1d3d8f 50%, #c62828 50%); }
+.coke { background: linear-gradient(90deg, #000000 50%, #c62828 50%); }
+.sprite { background: #0a8f55; }
+.bluemonarch { background: linear-gradient(45deg, #2d5fd9, #ffffff); }
+.goldwayne { background: #d4af37; }
+.rootbear { background: #6b4226; }
+
+/* ===== BACK ARROW ===== */
+.back-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 20px;
+    font-size: clamp(35px, 5vw, 50px);
+    color: #000000;
+    text-decoration: none;
+    background: #ffffff;
+    width: clamp(30px, 5vw, 40px);
+    height: clamp(30px, 5vw, 40px);
+    border-radius: 50%;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.back-arrow:hover {
+    transform: translateX(-2px);
+}
+
+/* ===== ANIMACIÓN ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: clamp(15px, 4vw, 30px);
+        gap: clamp(15px, 4vw, 30px);
+    }
+
+    .image-box,
+    .info-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .zoom-container {
+        height: clamp(200px, 25vw, 300px);
+    }
+
+    .info-box h1 { font-size: clamp(18px, 2.2vw, 26px); }
+    .watch-name { font-size: clamp(14px, 1.8vw, 20px); }
+    .price { font-size: clamp(14px, 1.8vw, 20px); }
+}
+
+/* Móviles */
+@media (max-width: 767px) {
+    .container {
+        padding: clamp(10px, 3vw, 20px);
+        gap: clamp(10px, 3vw, 20px);
+    }
+
+    .zoom-container { height: clamp(150px, 25vw, 250px); }
+    .info-box h1 { font-size: clamp(16px, 2vw, 22px); }
+    .watch-name { font-size: clamp(14px, 1.8vw, 18px); }
+    .price { font-size: clamp(14px, 1.8vw, 18px); }
+    .description { font-size: clamp(12px, 1.5vw, 13px); }
+    .colors { gap: clamp(6px, 2vw, 10px); }
+    .back-arrow {
+        font-size: clamp(30px, 4vw, 40px);
+        width: clamp(28px, 4vw, 35px);
+        height: clamp(28px, 4vw, 35px);
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .zoom-container { height: clamp(120px, 25vw, 200px); }
+    .info-box h1 { font-size: clamp(14px, 2vw, 20px); }
+    .watch-name { font-size: clamp(12px, 1.5vw, 16px); }
+    .price { font-size: clamp(12px, 1.5vw, 16px); }
+    .description { font-size: clamp(11px, 1.5vw, 12px); }
+    .colors { gap: clamp(5px, 1.5vw, 8px); }
+    .back-arrow {
+        font-size: clamp(25px, 4vw, 30px);
+        width: clamp(25px, 4vw, 30px);
+        height: clamp(25px, 4vw, 30px);
+    }
+}

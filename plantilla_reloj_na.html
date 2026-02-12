@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉTERNITÉ GROUP</title>
+
+    <!-- CSS GENERALES -->
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="plantilla_reloj_na.css">
+
+
+
+    
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="./logo/FAV_D.png" type="image/x-icon">
+</head>
+
+<body>
+
+<!-- HEADER / MENU -->
+<header>
+    <div class="menu">
+        <div class="menu-logo">
+            <a href="index.html"><img src="./logo/FAV_D.png" alt="Logo"></a>
+        </div>
+        <nav class="menu-nav">
+            <button onclick="irA('index.html')">Inicio</button>
+            <button onclick="irA('relojes.html')">Relojes</button>
+            <button onclick="irA('servicios.html')">Servicios</button>
+            <button onclick="irA('contacto.html')">Contacto</button>
+        </nav>
+    </div>
+</header>
+
+<a href="relojes.html" class="back-arrow">
+    &#8592;
+</a>
+
+<!-- MAIN -->
+<main id="relojes">
+    <!-- SECCIÓN RELOJ -->
+    <section class="reloj-section">
+
+        <div class="container">
+
+            <!-- IZQUIERDA: IMAGEN -->
+            <div class="image-box">
+                <div class="zoom-container" id="zoomContainer">
+                    <img id="watchImage" src="./relojes/pantilla de relojes/na/1.png" alt="Reloj">
+                </div>
+            </div>
+
+            <!-- DERECHA: INFO -->
+            <div class="info-box">
+                <h1>Nautilus</h1>
+
+                <h2 class="watch-name" id="watchName">Desert Mirage</h2>
+
+                <div class="price">174'99€</div>
+
+                <p class="description">
+                    Deportivo y refinado a la vez, este reloj destaca por su perfil distintivo y líneas modernas, ofreciendo lujo discreto y presencia única en la muñeca.
+                </p>
+
+            <div class="colors">
+                <span class="color desert-mirage" onclick="changeWatch('desert_mirage')"></span>
+                <span class="color rose-panther" onclick="changeWatch('rose_panther')"></span>
+                <span class="color chocolate-wave" onclick="changeWatch('chocolate_wave')"></span>
+
+                <span class="color shadow" onclick="changeWatch('shadow')"></span>
+                <span class="color poseidon" onclick="changeWatch('poseidon')"></span>
+                <span class="color tiffany-blue" onclick="changeWatch('tiffany_blue')"></span>
+
+                <span class="color green-light" onclick="changeWatch('green_light')"></span>
+                <span class="color silver-surfer" onclick="changeWatch('silver_surfer')"></span>
+                <span class="color black-panther" onclick="changeWatch('black_panther')"></span>
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <p>© 2025 ÉTERNITÉ GROUP</p>
+            <p><a href="mailto:contacteternitegroup@gmail.com" target="_blank" rel="noopener noreferrer">contacteternitegroup@gmail.com</a></p>
+        </div>
+
+        <div class="footer-frase">
+            <p>“Own Your Time”</p>
+        </div>
+
+        <div class="footer-redes">
+            <a href="https://www.instagram.com/eternitegroup/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+            <a href="https://www.tiktok.com/@eternitegroup" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TikTok</a>
+            <a href="https://x.com/ContactEternite" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+            <a href="https://www.youtube.com/@EternitEGroup" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
