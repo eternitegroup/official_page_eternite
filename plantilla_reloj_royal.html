@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Oak — ÉTERNITÉ GROUP</title>
+  <link rel="stylesheet" href="general.css">
+  <link rel="stylesheet" href="plantilla_reloj.css">
+  <link rel="shortcut icon" href="./logo/FAV_D.ico" type="image/x-icon">
+</head>
+<body>
+<header><div class="menu"><div class="menu-logo"><a href="index.html"><img src="./logo/FAV_D.png" alt="Logo"></a></div><nav class="menu-nav"><button onclick="irA('index.html')">Inicio</button><button onclick="irA('relojes.html')">Relojes</button><button onclick="irA('servicios.html')">Servicios</button><button onclick="irA('contacto.html')">Contacto</button></nav></div></header>
+<a href="relojes.html" class="back-arrow">&#8592;</a>
+<main>
+  <section class="reloj-section">
+    <div class="container">
+      <div class="image-box">
+        <div class="zoom-container" id="zoomContainer">
+          <img id="watchImage" src="./relojes/pantilla de relojes/ro/1.png" alt="Royal Oak">
+        </div>
+      </div>
+      <div class="info-box">
+        <p class="breadcrumb"><a href="relojes.html">Relojes</a> / Royal Oak</p>
+        <h1>Royal Oak</h1>
+        <h2 class="watch-name" id="watchName">Gold</h2>
+        <div class="price">189,99€</div>
+        <p class="description">Moderno y audaz, con su reconocible caja octogonal y acabado en oro, este reloj es un símbolo de lujo y diseño contemporáneo que atrae todas las miradas.</p>
+        <div>
+          <p class="colors-label">Seleccionar color</p>
+          <div class="colors">
+            <span class="color gold selected"          onclick="changeWatch('gold_ro')"          title="Gold"></span>
+            <span class="color black_ro"                onclick="changeWatch('black_ro')"         title="Black"></span>
+            <span class="color chronograph_blue"        onclick="changeWatch('chronograph_blue')" title="Chronograph Blue"></span>
+            <span class="color blue_ice_ro"             onclick="changeWatch('blue_ice_ro')"      title="Blue Ice"></span>
+            <span class="color chrono_green"            onclick="changeWatch('chrono_green')"     title="Chrono Green"></span>
+            <span class="color white_ro"                onclick="changeWatch('white_ro')"         title="White"></span>
+            <span class="color rose_gold_white"         onclick="changeWatch('rose_gold_white')"  title="Rose Gold White"></span>
+            <span class="color chrono_panda"            onclick="changeWatch('chrono_panda')"     title="Chrono Panda"></span>
+            <span class="color pink_ro"                 onclick="changeWatch('pink_ro')"          title="Pink"></span>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/eternitegroup/" target="_blank" class="cta-btn"><span>Consultar en Instagram</span><span>→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="footer-container"><div class="footer-info"><p>© 2025 ÉTERNITÉ GROUP</p><p><a href="mailto:contacteternitegroup@gmail.com">contacteternitegroup@gmail.com</a></p></div><div class="footer-frase"><p>"Own Your Time"</p></div><div class="footer-redes"><a href="https://www.instagram.com/eternitegroup/" target="_blank">Instagram</a><a href="https://www.tiktok.com/@eternitegroup" target="_blank">TikTok</a><a href="https://x.com/ContactEternite" target="_blank">Twitter</a><a href="https://www.youtube.com/@EternitEGroup" target="_blank">YouTube</a></div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>

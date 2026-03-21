@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nautilus — ÉTERNITÉ GROUP</title>
+  <link rel="stylesheet" href="general.css">
+  <link rel="stylesheet" href="plantilla_reloj.css">
+  <link rel="shortcut icon" href="./logo/FAV_D.ico" type="image/x-icon">
+</head>
+<body>
+<header><div class="menu"><div class="menu-logo"><a href="index.html"><img src="./logo/FAV_D.png" alt="Logo"></a></div><nav class="menu-nav"><button onclick="irA('index.html')">Inicio</button><button onclick="irA('relojes.html')">Relojes</button><button onclick="irA('servicios.html')">Servicios</button><button onclick="irA('contacto.html')">Contacto</button></nav></div></header>
+<a href="relojes.html" class="back-arrow">&#8592;</a>
+<main>
+  <section class="reloj-section">
+    <div class="container">
+      <div class="image-box">
+        <div class="zoom-container" id="zoomContainer">
+          <img id="watchImage" src="./relojes/pantilla de relojes/na/1.png" alt="Nautilus">
+        </div>
+      </div>
+      <div class="info-box">
+        <p class="breadcrumb"><a href="relojes.html">Relojes</a> / Nautilus</p>
+        <h1>Nautilus</h1>
+        <h2 class="watch-name" id="watchName">Desert Mirage</h2>
+        <div class="price">174,99€</div>
+        <p class="description">Deportivo y refinado a la vez, este reloj destaca por su perfil distintivo y líneas modernas, ofreciendo lujo discreto y presencia única en la muñeca.</p>
+        <div>
+          <p class="colors-label">Seleccionar color</p>
+          <div class="colors">
+            <span class="color desert-mirage selected"  onclick="changeWatch('desert_mirage')"  title="Desert Mirage"></span>
+            <span class="color rose-panther"             onclick="changeWatch('rose_panther')"   title="Rose Panther"></span>
+            <span class="color chocolate-wave"           onclick="changeWatch('chocolate_wave')" title="Chocolate Wave"></span>
+            <span class="color shadow"                   onclick="changeWatch('shadow')"         title="Shadow"></span>
+            <span class="color poseidon"                 onclick="changeWatch('poseidon')"       title="Poseidon"></span>
+            <span class="color tiffany-blue"             onclick="changeWatch('tiffany_blue')"   title="Tiffany Blue"></span>
+            <span class="color green-light"              onclick="changeWatch('green_light')"    title="Green Light"></span>
+            <span class="color silver-surfer"            onclick="changeWatch('silver_surfer')"  title="Silver Surfer"></span>
+            <span class="color black-panther"            onclick="changeWatch('black_panther')"  title="Black Panther"></span>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/eternitegroup/" target="_blank" class="cta-btn"><span>Consultar en Instagram</span><span>→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="footer-container"><div class="footer-info"><p>© 2025 ÉTERNITÉ GROUP</p><p><a href="mailto:contacteternitegroup@gmail.com">contacteternitegroup@gmail.com</a></p></div><div class="footer-frase"><p>"Own Your Time"</p></div><div class="footer-redes"><a href="https://www.instagram.com/eternitegroup/" target="_blank">Instagram</a><a href="https://www.tiktok.com/@eternitegroup" target="_blank">TikTok</a><a href="https://x.com/ContactEternite" target="_blank">Twitter</a><a href="https://www.youtube.com/@EternitEGroup" target="_blank">YouTube</a></div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>

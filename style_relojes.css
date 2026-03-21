@@ -1,0 +1,126 @@
+/* ============================================================
+   ÉTERNITÉ GROUP — STYLE_RELOJES.CSS
+   ============================================================ */
+
+.catalog-title {
+  text-align: center;
+  padding: 5rem 1.5rem 1rem;
+  color: var(--white);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.catalog-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.2rem auto 0;
+}
+
+.catalog-subtitle {
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 3rem;
+}
+
+/* ── CATALOG GRID ── */
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 3rem 6rem;
+}
+
+/* ── PRODUCT CARD ── */
+.product {
+  border: 1px solid var(--border-soft);
+  background: var(--black-card);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  aspect-ratio: 3/4;
+  display: flex;
+  flex-direction: column;
+}
+
+.product:hover {
+  border-color: var(--border);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-gold);
+}
+
+.product-img-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.product img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.7);
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1), filter 0.6s ease;
+  display: block;
+}
+
+.product:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.95) saturate(0.9);
+}
+
+.product h2 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, var(--black-card) 100%);
+  transition: color var(--transition);
+}
+
+.product:hover h2 { color: var(--gold); }
+
+/* Corner accent */
+.product::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 30px 30px 0;
+  border-color: transparent var(--gold) transparent transparent;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.product:hover::after { opacity: 0.6; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .catalog { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .catalog {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem 1.5rem 4rem;
+    gap: 1rem;
+  }
+
+  .catalog-title { padding: 4rem 1.5rem 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .catalog { grid-template-columns: 1fr; }
+}

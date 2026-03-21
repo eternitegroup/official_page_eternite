@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submariner — ÉTERNITÉ GROUP</title>
+  <link rel="stylesheet" href="general.css">
+  <link rel="stylesheet" href="plantilla_reloj.css">
+  <link rel="shortcut icon" href="./logo/FAV_D.ico" type="image/x-icon">
+</head>
+<body>
+<header><div class="menu"><div class="menu-logo"><a href="index.html"><img src="./logo/FAV_D.png" alt="Logo"></a></div><nav class="menu-nav"><button onclick="irA('index.html')">Inicio</button><button onclick="irA('relojes.html')">Relojes</button><button onclick="irA('servicios.html')">Servicios</button><button onclick="irA('contacto.html')">Contacto</button></nav></div></header>
+<a href="relojes.html" class="back-arrow">&#8592;</a>
+<main>
+  <section class="reloj-section">
+    <div class="container">
+      <div class="image-box">
+        <div class="zoom-container" id="zoomContainer">
+          <img id="watchImage" src="./relojes/pantilla de relojes/sub/1.png" alt="Submariner">
+        </div>
+      </div>
+      <div class="info-box">
+        <p class="breadcrumb"><a href="relojes.html">Relojes</a> / Submariner</p>
+        <h1>Submariner</h1>
+        <h2 class="watch-name" id="watchName">Black Sub</h2>
+        <div class="price">189,99€</div>
+        <p class="description">Un clásico eterno para los aventureros. Combina resistencia al agua, durabilidad y un diseño icónico que nunca pasa de moda, perfecto para cualquier ocasión.</p>
+        <div>
+          <p class="colors-label">Seleccionar color</p>
+          <div class="colors">
+            <span class="color black_sub selected" onclick="changeWatch('black_sub')"   title="Black Sub"></span>
+            <span class="color greeny"              onclick="changeWatch('greeny')"      title="Greeny"></span>
+            <span class="color smurf"               onclick="changeWatch('smurf')"       title="Smurf"></span>
+            <span class="color bluephantom"         onclick="changeWatch('bluephantom')" title="Blue Phantom"></span>
+            <span class="color panter"              onclick="changeWatch('panter')"      title="Panter"></span>
+            <span class="color hulk"                onclick="changeWatch('hulk')"        title="Hulk"></span>
+            <span class="color starbucks"           onclick="changeWatch('starbucks')"   title="Starbucks"></span>
+            <span class="color bluesy"              onclick="changeWatch('bluesy')"      title="Bluesy"></span>
+            <span class="color sky"                 onclick="changeWatch('sky')"         title="Sky"></span>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/eternitegroup/" target="_blank" class="cta-btn"><span>Consultar en Instagram</span><span>→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="footer-container"><div class="footer-info"><p>© 2025 ÉTERNITÉ GROUP</p><p><a href="mailto:contacteternitegroup@gmail.com">contacteternitegroup@gmail.com</a></p></div><div class="footer-frase"><p>"Own Your Time"</p></div><div class="footer-redes"><a href="https://www.instagram.com/eternitegroup/" target="_blank">Instagram</a><a href="https://www.tiktok.com/@eternitegroup" target="_blank">TikTok</a><a href="https://x.com/ContactEternite" target="_blank">Twitter</a><a href="https://www.youtube.com/@EternitEGroup" target="_blank">YouTube</a></div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>

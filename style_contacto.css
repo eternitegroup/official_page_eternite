@@ -1,0 +1,127 @@
+/* ============================================================
+   ÉTERNITÉ GROUP — STYLE_CONTACTO.CSS
+   ============================================================ */
+
+.contacto-section {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 3rem;
+  position: relative;
+}
+
+.contacto-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(91,155,213,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contacto-contenedor {
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.contacto-titulo {
+  color: var(--white);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.contacto-titulo::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem auto;
+}
+
+/* ── REDES ── */
+.redes-sociales {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.red-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border: 1px solid var(--border);
+  background: var(--black-card);
+  transition: border-color var(--transition), transform var(--transition), background var(--transition);
+  position: relative;
+}
+
+.red-social::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(91,155,213,0.08);
+  transform: scale(0);
+  transition: transform var(--transition);
+}
+
+.red-social:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.red-social:hover::before { transform: scale(1); }
+
+.red-social img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: none;
+  opacity: 0.75;
+  transition: opacity var(--transition), transform var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.red-social:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ── TEXT ── */
+.contacto-texto {
+  padding: 2rem;
+  border: 1px solid var(--border-soft);
+  background: var(--black-card);
+  position: relative;
+}
+
+.contacto-texto::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--border-soft);
+  pointer-events: none;
+}
+
+.contacto-texto p {
+  font-size: 0.88rem;
+  line-height: 2;
+  color: var(--white-dim);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .contacto-section { padding: 3rem 1.5rem; }
+  .redes-sociales { gap: 1rem; }
+  .red-social { width: 46px; height: 46px; }
+}

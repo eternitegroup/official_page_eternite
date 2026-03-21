@@ -1,0 +1,334 @@
+/* ============================================================
+   ÉTERNITÉ GROUP — PLANTILLA_RELOJ.CSS (shared for all watches)
+   ============================================================ */
+
+/* ── RELOJ SECTION ── */
+.reloj-section {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+}
+
+/* ── IMAGE BOX ── */
+.image-box {
+  position: relative;
+}
+
+.image-box::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border: 1px solid var(--border-soft);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.zoom-container {
+  position: relative;
+  overflow: hidden;
+  background: var(--black-card);
+  border: 1px solid var(--border-soft);
+  aspect-ratio: 1 / 1;
+  cursor: zoom-in;
+  transition: border-color var(--transition);
+  z-index: 1;
+}
+
+.zoom-container:hover { border-color: var(--border); }
+
+.zoom-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 2rem;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: center;
+}
+
+.zoom-container.zoomed { cursor: zoom-out; }
+.zoom-container.zoomed img { transform: scale(1.8); }
+
+/* Thumbnail strip */
+.thumb-strip {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.thumb {
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--border-soft);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+
+.thumb:hover, .thumb.active { border-color: var(--gold); }
+
+/* ── INFO BOX ── */
+.info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Watch toggle (Datejust / Daydate) */
+.watch-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  width: fit-content;
+}
+
+.watch-toggle button {
+  padding: 0.5rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--white-dim);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.watch-toggle button.active {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.watch-toggle button:not(.active):hover {
+  color: var(--gold);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.breadcrumb a { color: var(--gold-dim); }
+.breadcrumb a:hover { color: var(--gold); }
+
+/* Title */
+.info-box h1 {
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  color: var(--white);
+  line-height: 1;
+}
+
+.watch-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--gold);
+  font-weight: 300;
+  transition: opacity 0.3s ease;
+}
+
+/* Price */
+.price {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+/* Description */
+.description {
+  font-size: 0.86rem;
+  line-height: 1.85;
+  color: var(--white-dim);
+  border-left: 1px solid var(--border);
+  padding-left: 1.25rem;
+}
+
+/* ── COLOR SWATCHES ── */
+.colors-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.5rem;
+}
+
+.colors {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.color {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color var(--transition), transform var(--transition);
+  position: relative;
+}
+
+.color:hover, .color.selected {
+  border-color: var(--gold);
+  transform: scale(1.15);
+}
+
+.color::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.color.selected::after { opacity: 1; }
+
+/* ── SWATCH COLORS — DAYTONA ── */
+.color.w       { background: #ffffff; }
+.color.b        { background: #727272; }
+.color.bu        { background: #10c6e6; }
+.color.r         { background: #886705; }
+
+/* ── SWATCH COLORS — GMT ── */
+.color.batman      { background: linear-gradient(135deg, #1a1a2e 50%, #2d4a6e 50%); }
+.color.brucewayne  { background: linear-gradient(135deg, #0d0d0d 50%, #1a1a2e 50%); }
+.color.joker       { background: linear-gradient(135deg, #3d1a5e 50%, #1a3d1a 50%); }
+.color.pepsi       { background: linear-gradient(135deg, #1e3a6e 50%, #8b1a1a 50%); }
+.color.coke        { background: linear-gradient(135deg, #8b1a1a 50%, #0d0d0d 50%); }
+.color.sprite      { background: linear-gradient(135deg, #1a5e1a 50%, #e8e800 50%); }
+.color.bluemonarch { background: #1e3a6e; }
+.color.goldwayne   { background: linear-gradient(135deg, #0d0d0d 50%, #c9a84c 50%); }
+.color.rootbear    { background: #3d1a00; }
+
+/* ── SWATCH COLORS — NAUTILUS ── */
+.color.desert-mirage    { background: linear-gradient(135deg, #c4a35a 50%, #8b6914 50%); }
+.color.rose-panther     { background: #d4829a; }
+.color.chocolate-wave   { background: #5a3010; }
+.color.shadow           { background: #1a1a1a; }
+.color.poseidon         { background: #0d2a4a; }
+.color.tiffany-blue     { background: #81d4c8; }
+.color.green-light      { background: #2d5a1a; }
+.color.silver-surfer    { background: #9a9a9a; }
+.color.black-panther    { background: #0d0d1a; }
+
+/* ── SWATCH COLORS — ROYAL OAK ── */
+.color.gold            { background: #c9a84c; }
+.color.black_ro        { background: #1a1a1a; }
+.color.chronograph_blue{ background: #1e3a6e; }
+.color.blue_ice_ro     { background: #4a7ab5; }
+.color.chrono_green    { background: #1a4a1a; }
+.color.white_ro        { background: #e8e4dc; }
+.color.rose_gold_white { background: linear-gradient(135deg, #c9845a 50%, #e8e4dc 50%); }
+.color.chrono_panda    { background: linear-gradient(135deg, #1a1a1a 50%, #f0f0f0 50%); }
+.color.pink_ro         { background: #d4829a; }
+
+/* ── SWATCH COLORS — SANTOS ── */
+.color.white_sa      { background: #e8e4dc; }
+.color.black_sa      { background: #1a1a1a; }
+.color.silvergold_sa { background: linear-gradient(135deg, #9a9a9a 50%, #c9a84c 50%); }
+.color.green_sa      { background: #1a4a1a; }
+.color.ninefive      { background: linear-gradient(135deg, #1a1a1a 50%, #9a9a9a 50%); }
+
+/* ── SWATCH COLORS — SUBMARINER ── */
+.color.black_sub    { background: #1a1a1a; }
+.color.greeny       { background: #1a4a1a; }
+.color.smurf        { background: #1e3a9e; }
+.color.bluephantom  { background: #1a1a3a; }
+.color.panter       { background: #0d0d1a; }
+.color.hulk         { background: #2d5a1a; }
+.color.starbucks    { background: #0d3a1a; }
+.color.bluesy       { background: #2a5a8a; }
+.color.sky          { background: #5aaad4; }
+
+/* ── SWATCH COLORS — DATEJUST ── */
+.color.ice-blue     { background: #b8d4e8; }
+.color.mint-green   { background: #286132; }
+.color.black-classic{ background: #1a1a1a; }
+
+/* ── CTA BUTTON ── */
+.cta-btn {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+  z-index: 0;
+}
+
+.cta-btn:hover { color: var(--black); }
+.cta-btn:hover::before { transform: scaleX(1); }
+.cta-btn span { position: relative; z-index: 1; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .container { gap: 3rem; }
+}
+
+@media (max-width: 768px) {
+  .reloj-section {
+    padding: 2rem 1.5rem;
+    min-height: auto;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .image-box::before { display: none; }
+
+  .info-box h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .reloj-section { padding: 1.5rem 1rem; }
+}
