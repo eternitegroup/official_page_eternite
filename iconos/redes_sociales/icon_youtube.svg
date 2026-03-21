@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Rounded rect body -->
+  <rect x="6" y="16" width="52" height="32" rx="10"/>
+  <!-- Play triangle -->
+  <polygon points="26,24 26,40 44,32"/>
+</svg>
