@@ -443,6 +443,194 @@
   background: rgba(91,155,213,0.06);
 }
 
+/* ── CTA RELOJES ── */
+.cta-relojes {
+  position: relative;
+  overflow: hidden;
+  padding: 10rem 3rem;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cta-relojes::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(91,155,213,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(180,150,90,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cta-relojes-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+}
+
+.cta-relojes-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.cta-relojes-title {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.cta-relojes-title em {
+  font-style: italic;
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.cta-relojes-sub {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: var(--white-dim);
+  max-width: 480px;
+  margin: 0 auto 3rem;
+}
+
+.cta-relojes-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 2.6rem;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s ease;
+}
+
+.cta-relojes-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-relojes-btn:hover { color: var(--black); }
+.cta-relojes-btn:hover::before { transform: translateX(0); }
+
+.cta-relojes-btn span,
+.cta-relojes-btn svg {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-relojes-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.cta-relojes-btn:hover svg { transform: translateX(4px); }
+
+/* Decorative rings */
+.cta-relojes-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cta-deco-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--border-soft);
+}
+
+.cta-deco-ring--1 {
+  width: 440px;
+  height: 440px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.35;
+}
+
+.cta-deco-ring--2 {
+  width: 640px;
+  height: 640px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+}
+
+.cta-deco-ring--3 {
+  width: 860px;
+  height: 860px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.1;
+}
+
+.cta-deco-cross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cta-deco-cross span {
+  display: block;
+  position: absolute;
+  background: var(--gold);
+  opacity: 0.12;
+}
+
+.cta-deco-cross span:first-child {
+  width: 1px;
+  height: 860px;
+  top: -430px;
+  left: 0;
+}
+
+.cta-deco-cross span:last-child {
+  width: 860px;
+  height: 1px;
+  left: -430px;
+  top: 0;
+}
+
+/* ── RESPONSIVE CTA ── */
+@media (max-width: 768px) {
+  .cta-relojes { padding: 7rem 1.5rem; }
+  .cta-deco-ring--1 { width: 280px; height: 280px; }
+  .cta-deco-ring--2 { width: 420px; height: 420px; }
+  .cta-deco-ring--3 { width: 560px; height: 560px; }
+  .cta-deco-cross span:first-child { height: 560px; top: -280px; }
+  .cta-deco-cross span:last-child  { width: 560px; left: -280px; }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .valores { grid-template-columns: repeat(2, 1fr); }
