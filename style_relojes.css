@@ -106,9 +106,189 @@
 
 .product:hover::after { opacity: 0.6; }
 
+/* ============================================================
+   COLORES DESPLEGABLES — acordeón por colección
+   ============================================================ */
+
+.catalog-colors-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 3rem 5rem;
+}
+
+.catalog-colors-title {
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.catalog-colors-title::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--border-soft);
+  margin: 0 auto 1.5rem;
+}
+
+/* Acordeón item */
+.cc-item {
+  border: 1px solid var(--border-soft);
+  background: var(--black-card);
+  margin-bottom: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.cc-item:hover,
+.cc-item.open {
+  border-color: var(--border);
+}
+
+/* Cabecera del acordeón */
+.cc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  gap: 1rem;
+}
+
+.cc-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cc-brand-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 4px
+}
+
+.cc-model-name {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.cc-count {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--white-dim);
+  font-family: var(--font-body);
+  margin-left: 0.5rem;
+}
+
+/* Chevron animado */
+.cc-chevron {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.cc-chevron svg {
+  width: 12px;
+  height: 12px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cc-item.open .cc-chevron {
+  transform: rotate(180deg);
+}
+
+/* Cuerpo colapsable */
+.cc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cc-item.open .cc-body {
+  max-height: 600px;
+}
+
+.cc-body-inner {
+  padding: 0 1.25rem 1.5rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* Grilla de variantes */
+.cc-variants {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.cc-variant {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border-soft);
+  background: var(--black-soft);
+  transition: border-color 0.2s;
+}
+
+.cc-variant:hover {
+  border-color: var(--gold-dim);
+}
+
+/* Pastilla de color */
+.cc-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.cc-variant-name {
+  font-size: 0.78rem;
+  color: var(--white-dim);
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+}
+
+.cc-variant-hex {
+  font-size: 0.68rem;
+  color: var(--gold-dim);
+  font-family: var(--font-body);
+  margin-left: auto;
+  letter-spacing: 0.04em;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   .catalog { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .catalog-colors-section { padding: 0 1.5rem 4rem; }
+  .cc-variants { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 }
 
 @media (max-width: 768px) {
@@ -119,8 +299,17 @@
   }
 
   .catalog-title { padding: 4rem 1.5rem 0.5rem; }
+
+  .catalog-colors-section { padding: 0 1rem 3rem; }
+
+  .cc-header { padding: 0.85rem 1rem; }
+
+  .cc-variants { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+  .cc-variant { padding: 0.5rem 0.7rem; }
 }
 
 @media (max-width: 480px) {
   .catalog { grid-template-columns: 1fr; }
+  .cc-variants { grid-template-columns: 1fr; }
 }
