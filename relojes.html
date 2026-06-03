@@ -7,6 +7,426 @@
   <link rel="stylesheet" href="style_relojes.css">
   <link rel="stylesheet" href="general.css">
   <link rel="shortcut icon" href="./logo/FAV_D.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    /* ── SECCIÓN "CÓMO PEDIR" ── */
+    .como-pedir-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 5rem 3rem 6rem;
+    }
+
+    .como-pedir-section .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .como-pedir-section .section-header h2 {
+      color: var(--white);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .como-pedir-section .section-header h2::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.2rem auto 0;
+    }
+
+    .como-pedir-section .section-header p {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    /* Progress bar */
+    .cp-progress-bar {
+      height: 2px;
+      background: var(--black-soft);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .cp-progress-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    /* Steps nav */
+    .cp-steps-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 2rem;
+    }
+
+    .cp-step-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--black-card);
+      color: var(--white-dim);
+      font-size: 0.78rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .cp-step-dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+    }
+
+    .cp-step-dot.done {
+      background: rgba(91,155,213,0.15);
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .cp-step-line {
+      width: 44px;
+      height: 1px;
+      background: var(--border-soft);
+    }
+
+    /* Step panels */
+    .cp-panel {
+      display: none;
+      animation: cpFadeIn 0.3s ease;
+    }
+
+    .cp-panel.active { display: block; }
+
+    @keyframes cpFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Step card */
+    .cp-card {
+      background: var(--black-card);
+      border: 1px solid var(--border-soft);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .cp-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid var(--border-soft);
+      pointer-events: none;
+    }
+
+    .cp-step-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: var(--font-body);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .cp-step-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+
+    .cp-step-desc {
+      font-size: 0.85rem;
+      color: var(--white-dim);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Timeline */
+    .cp-timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.5rem; }
+
+    .cp-tl-item { display: flex; gap: 14px; }
+
+    .cp-tl-left { display: flex; flex-direction: column; align-items: center; }
+
+    .cp-tl-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(91,155,213,0.12);
+      border: 1px solid var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gold);
+      font-family: var(--font-body);
+    }
+
+    .cp-tl-line {
+      width: 1px;
+      flex: 1;
+      background: var(--border-soft);
+      margin: 4px auto;
+      min-height: 20px;
+    }
+
+    .cp-tl-content { padding-bottom: 1.25rem; flex: 1; }
+
+    .cp-tl-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white);
+      font-family: var(--font-body);
+      margin-bottom: 2px;
+    }
+
+    .cp-tl-sub {
+      font-size: 0.8rem;
+      color: var(--white-dim);
+    }
+
+    /* Instagram button */
+    .cp-ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.4rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      margin-top: 0.75rem;
+      text-decoration: none;
+      font-family: var(--font-body);
+      transition: opacity 0.2s;
+    }
+
+    .cp-ig-btn:hover { opacity: 0.88; color: #fff; }
+
+    /* Nav buttons */
+    .cp-nav-btns { display: flex; gap: 10px; margin-top: 1.5rem; position: relative; z-index: 1; }
+
+    .cp-btn {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--white-dim);
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .cp-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .cp-btn.primary {
+      background: transparent;
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .cp-btn.primary:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* Model grid */
+    .cp-model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+      margin: 0.75rem 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cp-model-chip {
+      padding: 0.45rem 0.75rem;
+      border: 1px solid var(--border-soft);
+      background: var(--black-soft);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--white-dim);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .cp-model-chip:hover,
+    .cp-model-chip.sel {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(91,155,213,0.07);
+    }
+
+    /* Tip box */
+    .cp-tip {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: rgba(91,155,213,0.06);
+      border: 1px solid rgba(91,155,213,0.22);
+      padding: 0.85rem;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cp-tip i { font-size: 18px; color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+    .cp-tip p {
+      font-size: 0.82rem;
+      color: var(--white-dim);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .cp-tip strong { color: var(--gold); font-weight: 400; }
+
+    /* Wrist calculator */
+    .cp-wrist-calc {
+      background: var(--black-soft);
+      border: 1px solid var(--border-soft);
+      padding: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cp-wrist-calc-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      font-family: var(--font-body);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .cp-wc-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.85rem;
+    }
+
+    .cp-wc-row label {
+      font-size: 0.78rem;
+      color: var(--white-dim);
+      min-width: 130px;
+      font-family: var(--font-body);
+    }
+
+    .cp-wc-row input[type="range"] { flex: 1; accent-color: var(--gold); }
+
+    .cp-wc-row span {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--white);
+      min-width: 50px;
+      text-align: right;
+      font-family: var(--font-body);
+    }
+
+    .cp-wc-row select {
+      flex: 1;
+      font-size: 0.78rem;
+      padding: 0.4rem 0.6rem;
+      border: 1px solid var(--border);
+      background: var(--black-card);
+      color: var(--white);
+      font-family: var(--font-body);
+    }
+
+    .cp-wc-result {
+      margin-top: 1rem;
+      padding: 0.85rem;
+      background: var(--black-card);
+      border: 1px solid var(--gold-dim);
+    }
+
+    .cp-wc-size {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+
+    /* Checklist */
+    .cp-check-list { list-style: none; margin-bottom: 1rem; position: relative; z-index: 1; }
+
+    .cp-check-list li {
+      font-size: 0.82rem;
+      color: var(--white-dim);
+      padding: 6px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .cp-check-list li:last-child { border-bottom: none; }
+
+    .cp-check-list li i { color: var(--gold); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+    /* Final summary card */
+    .cp-final {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--black-soft);
+      border: 1px solid var(--border-soft);
+      margin-top: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cp-final i.big { font-size: 36px; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+
+    .cp-final p { font-size: 0.85rem; color: var(--white-dim); margin-bottom: 0.35rem; }
+
+    .cp-final strong { color: var(--gold); font-weight: 400; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .como-pedir-section { padding: 3rem 1.5rem 4rem; }
+      .cp-card { padding: 1.5rem 1.25rem; }
+      .cp-step-line { width: 24px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,68 +445,426 @@
 </header>
 
 <main>
-  <h2 class="catalog-title">Colección</h2>
-  <p class="catalog-subtitle">Mods exclusivos — Selección de relojes</p>
 
-  <div class="catalog">
+  <!-- ── COLORES POR MODELO ── -->
+  <section>
+    <h1 class="catalog-title">Colecciones</h1>
+    <p class="catalog-subtitle">Éternité — Todos los modelos y variantes disponibles</p>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_date.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/pantilla de relojes/da/datejust/1.png" alt="Datejust Mod">
+    <div class="catalog-colors-section">
+      <p class="catalog-colors-title">Despliega cada colección para ver las variantes de color disponibles</p>
+
+      <!-- Datejust -->
+      <div class="cc-item" id="cc-datejust">
+        <div class="cc-header" onclick="ccToggle('cc-datejust')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">Datejust <span class="cc-count">4 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:#3a5f8a;"></div><span class="cc-variant-name">Blue</span><span class="cc-variant-hex">#3A5F8A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#a8d4ef;"></div><span class="cc-variant-name">Ice Blue</span><span class="cc-variant-hex">#A8D4EF</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#7ec8a0;"></div><span class="cc-variant-name">Mint Green</span><span class="cc-variant-hex">#7EC8A0</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a1a1a; border-color:rgba(255,255,255,0.3);"></div><span class="cc-variant-name">Black Classic</span><span class="cc-variant-hex">#1A1A1A</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h2>Datejust · Daydate</h2>
+
+      <!-- Day-Date -->
+      <div class="cc-item" id="cc-daydate">
+        <div class="cc-header" onclick="ccToggle('cc-daydate')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">Day-Date <span class="cc-count">4 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:#3a5f8a;"></div><span class="cc-variant-name">Blue</span><span class="cc-variant-hex">#3A5F8A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#7ec8a0;"></div><span class="cc-variant-name">Mint Green</span><span class="cc-variant-hex">#7EC8A0</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#a8d4ef;"></div><span class="cc-variant-name">Ice Blue</span><span class="cc-variant-hex">#A8D4EF</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a1a1a; border-color:rgba(255,255,255,0.3);"></div><span class="cc-variant-name">Black Classic</span><span class="cc-variant-hex">#1A1A1A</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daytona -->
+      <div class="cc-item" id="cc-daytona">
+        <div class="cc-header" onclick="ccToggle('cc-daytona')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">Daytona <span class="cc-count">4 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:#f5f5f5; border-color:rgba(0,0,0,0.2);"></div><span class="cc-variant-name">Panda</span><span class="cc-variant-hex">Blanco / Negro</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a1a1a; border-color:rgba(255,255,255,0.3);"></div><span class="cc-variant-name">Panda Black</span><span class="cc-variant-hex">Negro / Blanco</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#3a9ee0;"></div><span class="cc-variant-name">Blue Ice</span><span class="cc-variant-hex">#3A9EE0</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#c4956a;"></div><span class="cc-variant-name">Rose Gold</span><span class="cc-variant-hex">#C4956A</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GMT Master II -->
+      <div class="cc-item" id="cc-gmt">
+        <div class="cc-header" onclick="ccToggle('cc-gmt')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">GMT Master II <span class="cc-count">9 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#1a2a4a 50%,#2c2c2c 50%);"></div><span class="cc-variant-name">Batman</span><span class="cc-variant-hex">Azul / Negro</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#2a3a5a 50%,#c8a96e 50%);"></div><span class="cc-variant-name">Bruce Wayne</span><span class="cc-variant-hex">Azul / Oro</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#2a2a2a 50%,#6b2d2d 50%);"></div><span class="cc-variant-name">Joker</span><span class="cc-variant-hex">Negro / Burdeos</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#c8102e 50%,#003087 50%);"></div><span class="cc-variant-name">Pepsi</span><span class="cc-variant-hex">Rojo / Azul</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#c8102e 50%,#1a1a1a 50%);"></div><span class="cc-variant-name">Coke</span><span class="cc-variant-hex">Rojo / Negro</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#006400 50%,#f5f5f5 50%);"></div><span class="cc-variant-name">Sprite</span><span class="cc-variant-hex">Verde / Blanco</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a3a6a;"></div><span class="cc-variant-name">Blue Monarch</span><span class="cc-variant-hex">#1A3A6A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#c8a96e;"></div><span class="cc-variant-name">Gold Wayne</span><span class="cc-variant-hex">#C8A96E</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#7a3b1e;"></div><span class="cc-variant-name">Root Bear</span><span class="cc-variant-hex">#7A3B1E</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submariner -->
+      <div class="cc-item" id="cc-sub">
+        <div class="cc-header" onclick="ccToggle('cc-sub')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">Submariner <span class="cc-count">9 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a1a1a; border-color:rgba(255,255,255,0.3);"></div><span class="cc-variant-name">Black Sub</span><span class="cc-variant-hex">Negro</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#2d6a4f;"></div><span class="cc-variant-name">Greeny</span><span class="cc-variant-hex">#2D6A4F</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a5fa8;"></div><span class="cc-variant-name">Smurf</span><span class="cc-variant-hex">#1A5FA8</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#2a4a7a;"></div><span class="cc-variant-name">Blue Phantom</span><span class="cc-variant-hex">#2A4A7A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#5a1a5a;"></div><span class="cc-variant-name">Panter</span><span class="cc-variant-hex">#5A1A5A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#3a7a1a;"></div><span class="cc-variant-name">Hulk</span><span class="cc-variant-hex">#3A7A1A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#00704a;"></div><span class="cc-variant-name">Starbucks</span><span class="cc-variant-hex">#00704A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#4a7ab5;"></div><span class="cc-variant-name">Bluesy</span><span class="cc-variant-hex">#4A7AB5</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#87ceeb;"></div><span class="cc-variant-name">Sky</span><span class="cc-variant-hex">#87CEEB</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nautilus -->
+      <div class="cc-item" id="cc-nautilus">
+        <div class="cc-header" onclick="ccToggle('cc-nautilus')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">Nautilus <span class="cc-count">9 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:#c8a96e;"></div><span class="cc-variant-name">Desert Mirage</span><span class="cc-variant-hex">#C8A96E</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#b06080;"></div><span class="cc-variant-name">Rose Panther</span><span class="cc-variant-hex">#B06080</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#6b3a1f;"></div><span class="cc-variant-name">Chocolate Wave</span><span class="cc-variant-hex">#6B3A1F</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#2a2a3a;"></div><span class="cc-variant-name">Shadow</span><span class="cc-variant-hex">#2A2A3A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#003366;"></div><span class="cc-variant-name">Poseidon</span><span class="cc-variant-hex">#003366</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#81d4d4;"></div><span class="cc-variant-name">Tiffany Blue</span><span class="cc-variant-hex">#81D4D4</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#4aad72;"></div><span class="cc-variant-name">Green Light</span><span class="cc-variant-hex">#4AAD72</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#c0c0c0;"></div><span class="cc-variant-name">Silver Surfer</span><span class="cc-variant-hex">#C0C0C0</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a1a2e; border-color:rgba(255,255,255,0.3);"></div><span class="cc-variant-name">Black Panther</span><span class="cc-variant-hex">#1A1A2E</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Royal Oak -->
+      <div class="cc-item" id="cc-royaloak">
+        <div class="cc-header" onclick="ccToggle('cc-royaloak')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">Royal Oak <span class="cc-count">9 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:#c8a96e;"></div><span class="cc-variant-name">Gold</span><span class="cc-variant-hex">#C8A96E</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a1a1a; border-color:rgba(255,255,255,0.3);"></div><span class="cc-variant-name">Black</span><span class="cc-variant-hex">#1A1A1A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#2a5fa8;"></div><span class="cc-variant-name">Chronograph Blue</span><span class="cc-variant-hex">#2A5FA8</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#a8d4ef;"></div><span class="cc-variant-name">Blue Ice</span><span class="cc-variant-hex">#A8D4EF</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#2d7a3a;"></div><span class="cc-variant-name">Chrono Green</span><span class="cc-variant-hex">#2D7A3A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#f2f2f2; border-color:rgba(0,0,0,0.2);"></div><span class="cc-variant-name">White</span><span class="cc-variant-hex">#F2F2F2</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#c4956a;"></div><span class="cc-variant-name">Rose Gold White</span><span class="cc-variant-hex">#C4956A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#f5f5f5 50%,#1a1a1a 50%);"></div><span class="cc-variant-name">Chrono Panda</span><span class="cc-variant-hex">Blanco / Negro</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#e8a0b0;"></div><span class="cc-variant-name">Pink</span><span class="cc-variant-hex">#E8A0B0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Santos -->
+      <div class="cc-item" id="cc-santos">
+        <div class="cc-header" onclick="ccToggle('cc-santos')">
+          <div class="cc-header-left">
+            <div>
+              <div class="cc-brand-label">Éternité</div>
+              <div class="cc-model-name">Santos <span class="cc-count">5 variantes</span></div>
+            </div>
+          </div>
+          <div class="cc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-body-inner">
+            <div class="cc-variants">
+              <div class="cc-variant"><div class="cc-swatch" style="background:#f2f2f2; border-color:rgba(0,0,0,0.2);"></div><span class="cc-variant-name">White</span><span class="cc-variant-hex">#F2F2F2</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#1a1a1a; border-color:rgba(255,255,255,0.3);"></div><span class="cc-variant-name">Black</span><span class="cc-variant-hex">#1A1A1A</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:linear-gradient(135deg,#c0c0c0 50%,#c8a96e 50%);"></div><span class="cc-variant-name">Silver Gold</span><span class="cc-variant-hex">Plata / Oro</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#2d6a4f;"></div><span class="cc-variant-name">Green</span><span class="cc-variant-hex">#2D6A4F</span></div>
+              <div class="cc-variant"><div class="cc-swatch" style="background:#c0c0c0;"></div><span class="cc-variant-name">95</span><span class="cc-variant-hex">Acero</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CÓMO PEDIR ── -->
+  <section class="como-pedir-section">
+
+    <div class="section-header">
+      <h2>Cómo hacer tu pedido</h2>
+      <p>Guía paso a paso</p>
     </div>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_daytona.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/daytona.png" alt="Daytona Mod">
-      </div>
-      <h2>Daytona</h2>
+    <div class="cp-progress-bar">
+      <div class="cp-progress-fill" id="cp-prog" style="width:25%"></div>
     </div>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_gmt.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/catalogo/2.png" alt="GMT Mod">
-      </div>
-      <h2>GMT</h2>
+    <div class="cp-steps-nav">
+      <div class="cp-step-dot active" onclick="cpGoStep(0)" title="Contacto">1</div>
+      <div class="cp-step-line"></div>
+      <div class="cp-step-dot" onclick="cpGoStep(1)" title="Modelo">2</div>
+      <div class="cp-step-line"></div>
+      <div class="cp-step-dot" onclick="cpGoStep(2)" title="Medidas">3</div>
+      <div class="cp-step-line"></div>
+      <div class="cp-step-dot" onclick="cpGoStep(3)" title="Confirmar">4</div>
     </div>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_na.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/catalogo/3.png" alt="Nautilus Mod">
+    <!-- PASO 1: Contacto -->
+    <div class="cp-panel active" id="cp-p0">
+      <div class="cp-card">
+        <p class="cp-step-label">Paso 1 de 4</p>
+        <p class="cp-step-title">Contáctanos por Instagram</p>
+        <p class="cp-step-desc">Toda la tramitación se realiza exclusivamente a través de mensaje directo en nuestra cuenta oficial. Es el canal más rápido, seguro y personalizado para gestionar tu pedido.</p>
+        <div class="cp-timeline">
+          <div class="cp-tl-item">
+            <div class="cp-tl-left"><div class="cp-tl-dot">1</div><div class="cp-tl-line"></div></div>
+            <div class="cp-tl-content"><p class="cp-tl-title">Visita nuestro perfil</p><p class="cp-tl-sub">@eternitegroup en Instagram</p></div>
+          </div>
+          <div class="cp-tl-item">
+            <div class="cp-tl-left"><div class="cp-tl-dot">2</div><div class="cp-tl-line"></div></div>
+            <div class="cp-tl-content"><p class="cp-tl-title">Envía un mensaje directo</p><p class="cp-tl-sub">Usa la opción "Mensaje" en el perfil</p></div>
+          </div>
+          <div class="cp-tl-item">
+            <div class="cp-tl-left"><div class="cp-tl-dot">3</div></div>
+            <div class="cp-tl-content"><p class="cp-tl-title">Nuestro equipo te atiende</p><p class="cp-tl-sub">Respuesta personalizada y rápida</p></div>
+          </div>
+        </div>
+        <a class="cp-ig-btn" href="https://www.instagram.com/eternitegroup/" target="_blank" rel="noopener noreferrer">
+          <i class="ti ti-brand-instagram" aria-hidden="true"></i> Ir a @eternitegroup
+        </a>
+        <div class="cp-nav-btns">
+          <button class="cp-btn primary" onclick="cpGoStep(1)">Siguiente →</button>
+        </div>
       </div>
-      <h2>Nautilus</h2>
     </div>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_royal.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/catalogo/6.png" alt="Royal Oak Mod">
+    <!-- PASO 2: Modelo -->
+    <div class="cp-panel" id="cp-p1">
+      <div class="cp-card">
+        <p class="cp-step-label">Paso 2 de 4</p>
+        <p class="cp-step-title">Especifica el modelo</p>
+        <p class="cp-step-desc">Indícanos qué colección y variante te interesa. Selecciona la que más te guste — esa referencia exacta deberás mencionarla en tu mensaje.</p>
+        <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.5rem;">Colecciones disponibles</p>
+        <div class="cp-model-grid">
+          <div class="cp-model-chip sel" onclick="cpSelModel(this,'Datejust')">Datejust</div>
+          <div class="cp-model-chip" onclick="cpSelModel(this,'Day-Date')">Day-Date</div>
+          <div class="cp-model-chip" onclick="cpSelModel(this,'Daytona')">Daytona</div>
+          <div class="cp-model-chip" onclick="cpSelModel(this,'GMT')">GMT</div>
+          <div class="cp-model-chip" onclick="cpSelModel(this,'Submariner')">Submariner</div>
+          <div class="cp-model-chip" onclick="cpSelModel(this,'Nautilus')">Nautilus</div>
+          <div class="cp-model-chip" onclick="cpSelModel(this,'Royal Oak')">Royal Oak</div>
+          <div class="cp-model-chip" onclick="cpSelModel(this,'Santos')">Santos</div>
+        </div>
+        <div class="cp-tip">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>Selección actual: <strong id="cp-sel-model">Datejust</strong>.</p>
+        </div>
+        <div style="margin-top:1rem;position:relative;z-index:1;">
+          <label style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);display:block;margin-bottom:0.5rem;">Variante / color</label>
+          <div style="position:relative;">
+            <select id="cp-variante-select" onchange="cpSelectVariant(this)" style="width:100%;box-sizing:border-box;background:var(--black-soft);border:1px solid var(--border);color:var(--white);font-family:var(--font-body);font-size:0.82rem;padding:0.6rem 2.2rem 0.6rem 0.85rem;outline:none;transition:border-color 0.2s;appearance:none;-webkit-appearance:none;cursor:pointer;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+            </select>
+            <span style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--gold);font-size:0.7rem;">▼</span>
+          </div>
+          <!-- Pastilla de color previa seleccionada -->
+          <div id="cp-variant-preview" style="display:flex;align-items:center;gap:8px;margin-top:0.6rem;min-height:22px;"></div>
+          <!-- Campo oculto para compatibilidad con cpUpdateSummary -->
+          <input id="cp-variante" type="hidden" value="">
+        </div>
+        <div class="cp-nav-btns">
+          <button class="cp-btn" onclick="cpGoStep(0)">← Atrás</button>
+          <button class="cp-btn primary" onclick="cpGoStep(2)">Siguiente →</button>
+        </div>
       </div>
-      <h2>Royal Oak</h2>
     </div>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_sa.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/catalogo/7.png" alt="Santos Mod">
+    <!-- PASO 3: Medidas -->
+    <div class="cp-panel" id="cp-p2">
+      <div class="cp-card">
+        <p class="cp-step-label">Paso 3 de 4</p>
+        <p class="cp-step-title">Calcula la talla de tu correa</p>
+        <p class="cp-step-desc">Para que el reloj encaje perfecto en tu muñeca necesitamos su perímetro. Usa la calculadora para encontrar tu talla.</p>
+        <p style="font-size:0.78rem;font-weight:500;color:var(--white);margin-bottom:0.5rem;position:relative;z-index:1;">¿Cómo medir tu muñeca?</p>
+        <ul class="cp-check-list">
+          <li><i class="ti ti-circle-check" aria-hidden="true"></i>Enrolla una cinta métrica o un papel alrededor de tu muñeca, justo debajo del hueso.</li>
+          <li><i class="ti ti-circle-check" aria-hidden="true"></i>Anota la medida en milímetros.</li>
+          <li><i class="ti ti-circle-check" aria-hidden="true"></i>Si usas papel, márcalo y mídelo con una regla.</li>
+        </ul>
+        <div class="cp-wrist-calc">
+          <p class="cp-wrist-calc-title">Calculadora de talla</p>
+          <div class="cp-wc-row">
+            <label>Perímetro muñeca</label>
+            <input type="range" min="130" max="230" value="170" step="1" id="cp-wristRange" oninput="cpCalcSize()">
+            <span id="cp-wristVal">170 mm</span>
+          </div>
+          <div class="cp-wc-row">
+            <label>Tipo de correa</label>
+            <select id="cp-strapType" onchange="cpCalcSize()">
+              <option value="0">Oyster / Jubilee (metal)</option>
+              <option value="5">Cuero / Caucho</option>
+              <option value="10">NATO / tela</option>
+            </select>
+          </div>
+          <div class="cp-wc-result">
+            <p style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:4px;">Talla recomendada</p>
+            <p class="cp-wc-size" id="cp-sizeResult">M — 168–181 mm</p>
+            <p style="font-size:0.75rem;color:var(--white-dim);margin-top:6px;">Añade ~5 mm de holgura para mayor comodidad.</p>
+          </div>
+        </div>
+        <div class="cp-tip">
+          <i class="ti ti-ruler" aria-hidden="true"></i>
+          <p>Comunícanos el perímetro exacto de tu muñeca (<strong id="cp-tip-wrist">170 mm</strong>) al escribirnos. Ajustaremos la correa antes del envío.</p>
+        </div>
+        <div class="cp-nav-btns">
+          <button class="cp-btn" onclick="cpGoStep(1)">← Atrás</button>
+          <button class="cp-btn primary" onclick="cpGoStep(3)">Siguiente →</button>
+        </div>
       </div>
-      <h2>Santos</h2>
     </div>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_sub.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/catalogo/1.png" alt="Submariner Mod">
+    <!-- PASO 4: Confirmación -->
+    <div class="cp-panel" id="cp-p3">
+      <div class="cp-card">
+        <p class="cp-step-label">Paso 4 de 4</p>
+        <p class="cp-step-title">Confirmación y descarga</p>
+        <p class="cp-step-desc">Revisa tu pedido, añade cualquier nota adicional y descarga el PDF. Adjúntalo al enviarnos un mensaje por Instagram o por correo.</p>
+
+        <!-- Resumen visual -->
+        <div class="cp-summary-box">
+          <p class="cp-summary-title">Resumen del pedido</p>
+          <div class="cp-summary-grid">
+            <div class="cp-summary-item">
+              <span class="cp-summary-lbl">Colección</span>
+              <span class="cp-summary-val" id="cp-sum-model">Datejust</span>
+            </div>
+            <div class="cp-summary-item">
+              <span class="cp-summary-lbl">Variante / color</span>
+              <span class="cp-summary-val" id="cp-sum-variante">—</span>
+            </div>
+            <div class="cp-summary-item">
+              <span class="cp-summary-lbl">Perímetro muñeca</span>
+              <span class="cp-summary-val" id="cp-sum-wrist">170 mm</span>
+            </div>
+            <div class="cp-summary-item">
+              <span class="cp-summary-lbl">Tipo de correa</span>
+              <span class="cp-summary-val" id="cp-sum-strap">Oyster / Jubilee</span>
+            </div>
+            <div class="cp-summary-item">
+              <span class="cp-summary-lbl">Talla recomendada</span>
+              <span class="cp-summary-val" id="cp-sum-size">M — 168–181 mm</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notas adicionales -->
+        <div style="margin:1.25rem 0;position:relative;z-index:1;">
+          <label style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);display:block;margin-bottom:0.5rem;">Notas adicionales (opcional)</label>
+          <textarea id="cp-notas" rows="3" placeholder="Dedicatoria, fecha de entrega deseada, preferencias de packaging…" style="width:100%;box-sizing:border-box;background:var(--black-soft);border:1px solid var(--border);color:var(--white);font-family:var(--font-body);font-size:0.82rem;padding:0.6rem 0.85rem;outline:none;resize:vertical;transition:border-color 0.2s;line-height:1.6;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+        </div>
+
+        <!-- Botones de acción -->
+        <div style="position:relative;z-index:1;">
+          <button class="cp-btn-pdf" onclick="cpGeneratePDF()">
+            <i class="ti ti-file-download" aria-hidden="true"></i> Descargar PDF del pedido
+          </button>
+          <div style="display:flex;align-items:center;gap:12px;margin:1rem 0;">
+            <div style="flex:1;height:1px;background:var(--border-soft);"></div>
+            <span style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--white-dim);">y envíalo por</span>
+            <div style="flex:1;height:1px;background:var(--border-soft);"></div>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <a class="cp-ig-btn" href="https://www.instagram.com/eternitegroup/" target="_blank" rel="noopener noreferrer" style="flex:1;justify-content:center;">
+              <i class="ti ti-brand-instagram" aria-hidden="true"></i> Instagram
+            </a>
+            <a class="cp-ig-btn" href="mailto:contacteternitegroup@gmail.com" style="flex:1;justify-content:center;background:linear-gradient(135deg,#3a6a9a,#5b9bd5);">
+              <i class="ti ti-mail" aria-hidden="true"></i> Correo
+            </a>
+          </div>
+        </div>
+
+        <div class="cp-nav-btns">
+          <button class="cp-btn" onclick="cpGoStep(2)">← Atrás</button>
+        </div>
       </div>
-      <h2>Submariner</h2>
     </div>
 
-    <div class="product fade-in" onclick="goToLink('plantilla_reloj_who.html')">
-      <div class="product-img-wrap">
-        <img src="relojes/catalogo/8.png" alt="Who Cares Mod">
-      </div>
-      <h2>Who Cares</h2>
-    </div>
+  </section>
 
-  </div>
 </main>
 
 <footer class="footer">
@@ -108,5 +886,191 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+/* ── COLOR ACCORDION ── */
+function ccToggle(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.cc-item.open').forEach(el => el.classList.remove('open'));
+  // Toggle clicked
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+
+<script>
+/* ── CÓMO PEDIR — lógica del stepper ── */
+(function () {
+  'use strict';
+
+  let cpCur = 0;
+  const cpSteps = ['cp-p0', 'cp-p1', 'cp-p2', 'cp-p3'];
+  const cpDots  = document.querySelectorAll('.cp-step-dot');
+
+  window.cpGoStep = function (n) {
+    document.getElementById(cpSteps[cpCur]).classList.remove('active');
+    cpDots[cpCur].classList.remove('active');
+    cpDots[cpCur].classList.add('done');
+    if (n < cpCur) {
+      for (let i = n; i <= cpCur; i++) cpDots[i].classList.remove('done');
+    }
+    cpCur = n;
+    document.getElementById(cpSteps[cpCur]).classList.add('active');
+    cpDots[cpCur].classList.add('active');
+    cpDots[cpCur].classList.remove('done');
+    document.getElementById('cp-prog').style.width = ((cpCur + 1) / 4 * 100) + '%';
+    cpUpdateSummary();
+    document.querySelector('.como-pedir-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  window.cpSelModel = function (el, name) {
+    document.querySelectorAll('.cp-model-chip').forEach(c => c.classList.remove('sel'));
+    el.classList.add('sel');
+    document.getElementById('cp-sel-model').textContent = name;
+    cpPopulateVariants(name);
+    cpUpdateSummary();
+  };
+
+  window.cpCalcSize = function () {
+    const v       = parseInt(document.getElementById('cp-wristRange').value);
+    const offset  = parseInt(document.getElementById('cp-strapType').value);
+    const eff     = v + offset;
+    document.getElementById('cp-wristVal').textContent  = v + ' mm';
+    document.getElementById('cp-tip-wrist').textContent = v + ' mm';
+    let size, range;
+    if      (eff < 155) { size = 'XS'; range = '< 155 mm'; }
+    else if (eff < 168) { size = 'S';  range = '155–167 mm'; }
+    else if (eff < 182) { size = 'M';  range = '168–181 mm'; }
+    else if (eff < 198) { size = 'L';  range = '182–197 mm'; }
+    else                { size = 'XL'; range = '≥ 198 mm'; }
+    document.getElementById('cp-sizeResult').textContent = size + ' — ' + range;
+    cpUpdateSummary();
+  };
+
+  function cpUpdateSummary() {
+    const m = document.getElementById('cp-sel-model').textContent;
+    const w = document.getElementById('cp-wristVal').textContent;
+    document.getElementById('cp-sum-model').textContent = m;
+    document.getElementById('cp-sum-wrist').textContent = w;
+  }
+
+  cpCalcSize();
+
+  /* ── VARIANTES POR MODELO ── */
+  const cpVariantData = {
+    'Datejust': [
+      { name: 'Blue',          color: '#3a5f8a' },
+      { name: 'Ice Blue',      color: '#a8d4ef' },
+      { name: 'Mint Green',    color: '#7ec8a0' },
+      { name: 'Black Classic', color: '#1a1a1a' },
+    ],
+    'Day-Date': [
+      { name: 'Blue',          color: '#3a5f8a' },
+      { name: 'Ice Blue',      color: '#a8d4ef' },
+      { name: 'Mint Green',    color: '#7ec8a0' },
+      { name: 'Black Classic', color: '#1a1a1a' },
+    ],
+    'Daytona': [
+      { name: 'Panda',      color: '#f5f5f5' },
+      { name: 'Panda Black',color: '#1a1a1a' },
+      { name: 'Blue Ice',   color: '#3a9ee0' },
+      { name: 'Rose Gold',  color: '#c4956a' },
+    ],
+    'GMT': [
+      { name: 'Batman',       color: '#1a2a4a' },
+      { name: 'Bruce Wayne',  color: '#2a3a5a' },
+      { name: 'Joker',        color: '#2a2a2a' },
+      { name: 'Pepsi',        color: '#c8102e' },
+      { name: 'Coke',         color: '#c8102e' },
+      { name: 'Sprite',       color: '#006400' },
+      { name: 'Blue Monarch', color: '#1a3a6a' },
+      { name: 'Gold Wayne',   color: '#c8a96e' },
+      { name: 'Root Bear',    color: '#7a3b1e' },
+    ],
+    'Submariner': [
+      { name: 'Black Sub',    color: '#1a1a1a' },
+      { name: 'Greeny',       color: '#2d6a4f' },
+      { name: 'Smurf',        color: '#1a5fa8' },
+      { name: 'Blue Phantom', color: '#2a4a7a' },
+      { name: 'Panter',       color: '#5a1a5a' },
+      { name: 'Hulk',         color: '#3a7a1a' },
+      { name: 'Starbucks',    color: '#00704a' },
+      { name: 'Bluesy',       color: '#4a7ab5' },
+      { name: 'Sky',          color: '#87ceeb' },
+    ],
+    'Nautilus': [
+      { name: 'Desert Mirage',  color: '#c8a96e' },
+      { name: 'Rose Panther',   color: '#b06080' },
+      { name: 'Chocolate Wave', color: '#6b3a1f' },
+      { name: 'Shadow',         color: '#2a2a3a' },
+      { name: 'Poseidon',       color: '#003366' },
+      { name: 'Tiffany Blue',   color: '#81d4d4' },
+      { name: 'Green Light',    color: '#4aad72' },
+      { name: 'Silver Surfer',  color: '#c0c0c0' },
+      { name: 'Black Panther',  color: '#1a1a2e' },
+    ],
+    'Royal Oak': [
+      { name: 'Gold',             color: '#c8a96e' },
+      { name: 'Black',            color: '#1a1a1a' },
+      { name: 'Chronograph Blue', color: '#2a5fa8' },
+      { name: 'Blue Ice',         color: '#a8d4ef' },
+      { name: 'Chrono Green',     color: '#2d7a3a' },
+      { name: 'White',            color: '#f2f2f2' },
+      { name: 'Rose Gold White',  color: '#c4956a' },
+      { name: 'Chrono Panda',     color: '#f5f5f5' },
+      { name: 'Pink',             color: '#e8a0b0' },
+    ],
+    'Santos': [
+      { name: 'White',       color: '#f2f2f2' },
+      { name: 'Black',       color: '#1a1a1a' },
+      { name: 'Silver Gold', color: '#c0c0c0' },
+      { name: 'Green',       color: '#2d6a4f' },
+      { name: '95',          color: '#b0b0b0' },
+    ],
+  };
+
+  window.cpPopulateVariants = function(modelName) {
+    const sel     = document.getElementById('cp-variante-select');
+    const preview = document.getElementById('cp-variant-preview');
+    const hidden  = document.getElementById('cp-variante');
+    const variants = cpVariantData[modelName] || [];
+
+    sel.innerHTML = '';
+    variants.forEach((v, i) => {
+      const opt = document.createElement('option');
+      opt.value = v.name;
+      opt.textContent = v.name;
+      opt.dataset.color = v.color;
+      sel.appendChild(opt);
+    });
+
+    cpUpdatePreview(sel, preview, hidden);
+  };
+
+  window.cpSelectVariant = function(sel) {
+    const preview = document.getElementById('cp-variant-preview');
+    const hidden  = document.getElementById('cp-variante');
+    cpUpdatePreview(sel, preview, hidden);
+    cpUpdateSummary();
+  };
+
+  function cpUpdatePreview(sel, preview, hidden) {
+    const chosen = sel.options[sel.selectedIndex];
+    if (!chosen) { preview.innerHTML = ''; return; }
+    const color = chosen.dataset.color || '#888';
+    hidden.value = chosen.value;
+    preview.innerHTML =
+      '<div style="width:12px;height:12px;border-radius:50%;background:' + color +
+      ';border:1px solid rgba(255,255,255,0.2);flex-shrink:0;"></div>' +
+      '<span style="font-size:0.78rem;color:var(--gold);font-family:var(--font-body);letter-spacing:0.05em;">' +
+      chosen.value + '</span>';
+  }
+
+  // Init with default model
+  cpPopulateVariants('Datejust');
+}());
+</script>
+
 </body>
 </html>
