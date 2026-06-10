@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initHeader();
   initMobileMenu();
+  initNavSearch();
   initFadeIn();
   initActiveNav();
   initWatchPage();
@@ -89,6 +90,160 @@ function initMobileMenu() {
       mobileMenu.classList.remove('open');
       setTimeout(() => { mobileMenu.style.display = 'none'; }, 350);
     }
+  });
+}
+
+/* ── NAV SEARCH ── */
+function initNavSearch() {
+  const nav = document.querySelector('.menu-nav');
+  if (!nav) return;
+
+  // Pages & content to search
+  const searchIndex = [
+    { name: 'Inicio',           type: 'Página',      url: 'index.html',      icon: 'home' },
+    { name: 'Relojes',          type: 'Página',      url: 'relojes.html',    icon: 'clock' },
+    { name: 'Servicios',        type: 'Página',      url: 'servicios.html',  icon: 'tool' },
+    { name: 'Contacto',         type: 'Página',      url: 'contacto.html',   icon: 'mail' },
+    { name: 'Reparación',       type: 'Servicio',    url: 'servicios.html#reparacion',    icon: 'tool' },
+    { name: 'Personalización',  type: 'Servicio',    url: 'servicios.html#personalizacion', icon: 'tool' },
+    { name: 'Venta',            type: 'Servicio',    url: 'servicios.html#venta',         icon: 'tool' },
+    { name: 'Daytona',          type: 'Reloj',       url: 'relojes.html',    icon: 'clock' },
+    { name: 'Submariner',       type: 'Reloj',       url: 'relojes.html',    icon: 'clock' },
+    { name: 'GMT',              type: 'Reloj',       url: 'relojes.html',    icon: 'clock' },
+    { name: 'Datejust',         type: 'Reloj',       url: 'relojes.html',    icon: 'clock' },
+    { name: 'Nautilus',         type: 'Reloj',       url: 'relojes.html',    icon: 'clock' },
+    { name: 'Royal Oak',        type: 'Reloj',       url: 'relojes.html',    icon: 'clock' },
+    { name: 'Santos',           type: 'Reloj',       url: 'relojes.html',    icon: 'clock' },
+    { name: 'Instagram',        type: 'Contacto',    url: 'contacto.html',   icon: 'mail' },
+    { name: 'Own Your Time',    type: 'Concepto',    url: 'index.html',      icon: 'home' },
+    { name: 'Packaging',        type: 'Servicio',    url: 'servicios.html',  icon: 'tool' },
+    { name: 'Dedicatoria',      type: 'Servicio',    url: 'servicios.html',  icon: 'tool' },
+  ];
+
+  const icons = {
+    home:  `<svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V21H15v-5h-6v5H3z"/></svg>`,
+    clock: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>`,
+    tool:  `<svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+    mail:  `<svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+  };
+
+  // Build search widget HTML
+  const wrapper = document.createElement('div');
+  wrapper.className = 'nav-search';
+  wrapper.innerHTML = `
+    <button class="nav-search-toggle" aria-label="Buscar" id="navSearchToggle">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <div class="nav-search-overlay" id="navSearchOverlay"></div>
+    <div class="nav-search-box">
+      <div class="nav-search-inner">
+        <input class="nav-search-input" id="navSearchInput" type="text" placeholder="Buscar..." autocomplete="off" spellcheck="false">
+        <button class="nav-search-clear" id="navSearchClear" aria-label="Borrar">✕</button>
+        <div class="nav-search-results" id="navSearchResults">
+          <div class="nav-search-no-results">Sin resultados</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Insertar en .menu (no dentro de .menu-nav) para que sea visible en móvil
+  const menuDiv = document.querySelector('.menu');
+  if (menuDiv) {
+    menuDiv.appendChild(wrapper);
+  } else {
+    nav.appendChild(wrapper);
+  }
+
+  const toggle = wrapper.querySelector('#navSearchToggle');
+  const input  = wrapper.querySelector('#navSearchInput');
+  const clear  = wrapper.querySelector('#navSearchClear');
+  const results = wrapper.querySelector('#navSearchResults');
+  const noResults = wrapper.querySelector('.nav-search-no-results');
+
+  function openSearch() {
+    wrapper.classList.add('open');
+    setTimeout(() => input.focus(), 50);
+  }
+
+  function closeSearch() {
+    wrapper.classList.remove('open', 'has-results', 'no-match', 'has-value');
+    input.value = '';
+    results.innerHTML = '';
+    results.appendChild(noResults);
+  }
+
+  function renderResults(query) {
+    const q = query.trim().toLowerCase();
+    results.innerHTML = '';
+    results.appendChild(noResults);
+
+    wrapper.classList.remove('has-results', 'no-match');
+
+    if (!q) return;
+
+    const matches = searchIndex.filter(item =>
+      item.name.toLowerCase().includes(q) || item.type.toLowerCase().includes(q)
+    ).slice(0, 6);
+
+    if (!matches.length) {
+      wrapper.classList.add('no-match');
+      return;
+    }
+
+    wrapper.classList.add('has-results');
+
+    matches.forEach(item => {
+      const el = document.createElement('a');
+      el.className = 'nav-search-result-item';
+      el.href = item.url;
+      el.innerHTML = `
+        <div class="nav-search-result-icon">${icons[item.icon]}</div>
+        <div class="nav-search-result-text">
+          <span class="nav-search-result-name">${item.name}</span>
+          <span class="nav-search-result-type">${item.type}</span>
+        </div>
+      `;
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeSearch();
+        irA(item.url);
+      });
+      results.appendChild(el);
+    });
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    wrapper.classList.contains('open') ? closeSearch() : openSearch();
+  });
+
+  // Close on overlay click
+  const overlay = wrapper.querySelector('#navSearchOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', closeSearch);
+  }
+
+  clear.addEventListener('click', (e) => {
+    e.stopPropagation();
+    input.value = '';
+    wrapper.classList.remove('has-value', 'has-results', 'no-match');
+    results.innerHTML = '';
+    results.appendChild(noResults);
+    input.focus();
+  });
+
+  input.addEventListener('input', () => {
+    const val = input.value;
+    wrapper.classList.toggle('has-value', val.length > 0);
+    renderResults(val);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSearch();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!wrapper.contains(e.target)) closeSearch();
   });
 }
 
