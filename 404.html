@@ -118,27 +118,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(1rem, 3vw, 3rem);
+      gap: clamp(0.5rem, 2vw, 3rem);
       animation: fadeUp 1s 0.18s cubic-bezier(0.4,0,0.2,1) both;
     }
 
     /* Los dos "4" blancos */
     .digit-4 {
       font-family: var(--font-display);
-      font-size: clamp(8rem, 22vw, 17rem);
+      font-size: clamp(6rem, 18vw, 17rem);
       font-weight: 300;
       color: var(--white);
       letter-spacing: -0.02em;
       user-select: none;
-      line-height: 0.82;
+      line-height: 0.85;
+      display: flex;
+      align-items: center;
     }
 
-    /* Reloj — más pequeño que los 4, centrado */
+    /* Reloj — mismo tamaño que la altura visual del "4" */
     .clock-zero {
-      width: clamp(5.5rem, 15vw, 12rem);
-      height: clamp(5.5rem, 15vw, 12rem);
+      width: clamp(5rem, 15.3vw, 14.45rem);
+      height: clamp(5rem, 15.3vw, 14.45rem);
       flex-shrink: 0;
-      margin-top: clamp(2rem, 5vw, 4rem);
+      margin-top: clamp(1.8rem, 5vw, 4rem);
+      align-self: center;
     }
 
     .clock-zero svg {
