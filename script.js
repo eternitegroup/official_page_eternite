@@ -71,15 +71,27 @@ function initMobileMenu() {
   if (menuDiv) menuDiv.appendChild(hamburger);
   document.body.insertBefore(mobileMenu, document.body.firstChild.nextSibling);
 
+  // Ensure mobile menu is fully hidden and non-interactive by default
+  mobileMenu.style.display = 'none';
+  mobileMenu.style.pointerEvents = 'none';
+
   let menuOpen = false;
 
-  hamburger.addEventListener('click', () => {
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
     menuOpen = !menuOpen;
     hamburger.classList.toggle('open', menuOpen);
-    mobileMenu.style.display = menuOpen ? 'flex' : 'none';
-    requestAnimationFrame(() => {
-      mobileMenu.classList.toggle('open', menuOpen);
-    });
+    if (menuOpen) {
+      mobileMenu.style.display = 'flex';
+      mobileMenu.style.pointerEvents = 'auto';
+      requestAnimationFrame(() => {
+        mobileMenu.classList.add('open');
+      });
+    } else {
+      mobileMenu.classList.remove('open');
+      mobileMenu.style.pointerEvents = 'none';
+      setTimeout(() => { mobileMenu.style.display = 'none'; }, 350);
+    }
   });
 
   // Close on click outside
@@ -88,6 +100,7 @@ function initMobileMenu() {
       menuOpen = false;
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
+      mobileMenu.style.pointerEvents = 'none';
       setTimeout(() => { mobileMenu.style.display = 'none'; }, 350);
     }
   });
