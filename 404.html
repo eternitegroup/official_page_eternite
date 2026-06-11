@@ -135,13 +135,28 @@
       align-items: center;
     }
 
-    /* Reloj — mismo tamaño que la altura visual del "4" */
+    /* Reloj */
     .clock-zero {
       width: clamp(5rem, 15.3vw, 14.45rem);
       height: clamp(5rem, 15.3vw, 14.45rem);
       flex-shrink: 0;
-      margin-top: clamp(1.8rem, 5vw, 4rem);
+      margin-top: 1.2rem;
       align-self: center;
+    }
+
+    @media (max-width: 768px) {
+      .digit-4 {
+        font-size: 22vw;
+        line-height: 1;
+      }
+      .clock-zero {
+        width: 22vw;
+        height: 22vw;
+        margin-top: 1.5vw;
+      }
+      .hero-404 {
+        gap: 3vw;
+      }
     }
 
     .clock-zero svg {
